@@ -30,7 +30,7 @@ const Login = (props) => {
     return () => {
       clearTimeout(identifier);
     }
-  }, [setFormIsValid,enteredEmail, enteredPassword]);
+  }, [setFormIsValid, enteredEmail, enteredPassword]);
 
 
   const [emailstate, dispatchEMail] = useReducer(emailReducer, {
