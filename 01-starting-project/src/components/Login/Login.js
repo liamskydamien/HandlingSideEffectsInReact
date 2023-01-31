@@ -5,8 +5,15 @@ import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
 
 const emailReducer = (state, action) => {
-  return{value: '', isValid: false, errorMessage: 'Please enter a valid email address.'};
+  if(action.type === 'USER_INPUT'){
+      return {value: action.val, isValid: action.val.includes('@')};
+    }
+  if(action.type === 'INPUT_BLUR'){
+  return{value: action.val , isValid: false, errorMessage: 'Please enter a valid email address.'}
+  }
+    return {value: '', isValid: false};
 };
+
 const Login = (props) => {
   const [enteredEmail, setEnteredEmail] = useState('');
   const [emailIsValid, setEmailIsValid] = useState(false);
@@ -26,7 +33,10 @@ const Login = (props) => {
   }, [setFormIsValid,enteredEmail, enteredPassword]);
 
 
-  const [emailstate, dispatchEMail] = useReducer(emailReducer, );
+  const [emailstate, dispatchEMail] = useReducer(emailReducer, {
+    value: '',
+    isValid: false,
+  });
 
   const emailChangeHandler = (event) => {
     dispatchEMail({type: 'USER_INPUT', val: event.target.value});
@@ -38,7 +48,7 @@ const Login = (props) => {
   };
 
   const validateEmailHandler = () => {
-    setEmailIsValid(enteredEmail.includes('@'));
+    dispatchEMail({type: 'INPUT_BLUR', val: enteredEmail});
   };
 
   const validatePasswordHandler = () => {
