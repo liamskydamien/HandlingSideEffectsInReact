@@ -70,7 +70,7 @@ const Login = (props) => {
       <form onSubmit={submitHandler}>
         <Input id={"email"}
                type={"email"}
-               isValid={emailIsValid}
+               isValid={emailstate.isValid}
                value={emailstate.value}
                onChange={emailChangeHandler}
                onBlur={validateEmailHandler}/>
