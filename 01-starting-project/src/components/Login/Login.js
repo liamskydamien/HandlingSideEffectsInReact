@@ -71,7 +71,7 @@ const Login = (props) => {
         <Input id={"email"}
                type={"email"}
                isValid={emailIsValid}
-               value={emailstate}
+               value={emailstate.value}
                onChange={emailChangeHandler}
                onBlur={validateEmailHandler}/>
         <Input id={"password"}
